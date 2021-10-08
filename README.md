@@ -1,89 +1,69 @@
-Ultimate Tic-Tac-Toe by Maggie Ward
+Bookcation
 
 Overview
 
-This was my first project as part of the Software Engineering Immersive program at General Assembly. We were tasked with choosing a game from a curated list and building a version of that game. Ultimate Tic-Tac-Toe is a twist on the classic children's game. Instead of game play in one 3x3 grid, you play in nine 3x3 grids with each turn determining the next player's grid options.
+Bookcation is a play on the idea that books can take you places. You can select a book from the library we curate and find out the current weather of the book's setting. I worked with a partner, [Jessica Strawford](https://github.com/jessicastrawford), to build this application.
 
-![](https://lh5.googleusercontent.com/Sdpb98eOtuwPYtHIO7r7bfSrQ8zQgCl9jhxkoUkY99BpXwQNRGpBo4pGtU7jtwBRufAEvXf40NaWrR70C1ZpROgjlymSQxlw49yHu6DyV1114CcZ2FtCINB3R9sHovnfgcHOeeGA=s0)
+![](https://lh5.googleusercontent.com/wtgPK9EzsHP1o3EbI7P0ZmXwHwnqclZSsN0r1dJXjMBxvPKToToZZ_IcgziXd-0XCrLm2e0qlU29KsI9IHtpS6M1rcfuBVDi_GL6IUXt8mcQHXjqvCRutlB2Gypy5stLMRT8qDsB=s0)
 
-In the progress of the game, when player 2 places their butterfly token on the bottom-middle grid space it forces player 1 to now play in the bottom-middle grid.
-
-![](https://lh5.googleusercontent.com/Eu4ZxEczZJADWi5X8X2B6CcwaYllp751AWjd0P-JaiZ5NlAZImCd9zGrRt3Tli5IMWUc-iSCsAGeHyG-UkMEW5aQrIQIvhI_H-9c86xk888-08TUrHm-D2t7y-wnL4Nea1RSIj-Y=s0)
-
-When a grid is either won by a player or results in a draw, that grid is closed. The game ends when a player has won three grids in a line or there is an overall draw of the large grid.
+ ![](https://lh6.googleusercontent.com/pVojOMXBbGACT1qR2MVBU8ywiT37gf6H9fukQoYOc9h-uhPSJebVfJFdgfS0gnhNGO4NmHfwrqWqS96kDqfIMv-JdXAVK55dxLkpxkhZ2vnYL4F4CIVUIIH0TuEMls0vYhTYmmo_=s0)
 
 Deployment
 
-The game has been deployed with GitHub Pages and is available [here](https://maggieliz.github.io/sei-project-one/).
+This web app has been deployed with Netlify and is available [here](https://bookcation.netlify.app/).
 
 Brief
 
-The challenge was to build a JavaScript grid game in one week. I was required to build a game that is playable for two players on the same device, taking turns to make their moves. I needed to display the winner when the game was over. Stretch goals were to make the game design responsive and have a single layer mode with the computer attempting reasonable moves.
+We had to use React JS to build a web app that consumes a public API. We had two days to complete this task. In addition to consuming a public API, our app also needed to have several components and be deployed online.
 
 Technologies Used
 
 -   HTML5
 
--   CSS3
+-   Sass
 
--   JavaScript
+-   ReactJS
+
+-   JSX
 
 -   GitHub
 
 Process
 
-Planning
+Jessica and I went through many iterations of the idea we wanted before landing on this final format. Originally we hoped to build an app where a user could select the weather of the place they would like to go and we would return book suggestions with that setting. For example, if you wanted to get bundled up, you would select cold weather and the app might suggest "Into the Wild" by Jon Krakauer because it's set in Alaska. This is when we began to learn the limits of external APIs.
 
-I began the planning stage with a wireframe for the page itself and by thinking through my strategy for building the game. I planned to first make a typical tic-tac-toe game that functioned as it ought with determining a win or draw. Then I planned to adapt that original game into a multi-game.
+After spending a fair bit of planning time checking what information different weather APIs could provide we settled on asking for weather for specific cities instead of asking for specific types of weather. Once the concept was finalized, we built a wireframe and began coding.
 
-The Build
+We curated our own "library" by listing books that had distinct settings. We used that dataset to create a Books Index page. Each Book Show page would then make a request to the API [goweather.herokuapp.com ](https://goweather.herokuapp.com/weather/austin)for the setting's current weather.
 
-I used a for-loop to create the initial grid and its cells. I added turn-taking and then logic to check for a win or draw. Once this game was functioning as expected I expanded the for-loop to create nine grids with nine cells each. Now I needed to write controls to determine where a player could place their next token. Much of this logic was fairly repetitive and likely presents an opportunity to refactor.
-
-![](https://lh5.googleusercontent.com/uMHoDOPc3pKsl8aRPPNeQnjXhexJ2tisZ1FAe3eOhObhYTtFKRXlRI0LljL1AGfhTP8L1iY29_f7dxFuLe4QIIr-0fYLD02K8fyCW_fmdOYEFNTsfOyFsNxsGIHzfnTl27LDh7DO=s0)
-
-I used CSS classes to force the game action. For example, depending on the cell played in a given grid the corresponding grid would receive an "open" class and the other grids would have a class of "closed." The "closed" class includes "pointer-events: none" to prevent players from trying to place a token in a closed grid.![](https://lh5.googleusercontent.com/XJZVOAeG1kZq_FFQY4FfNhL-D69xAdMVmkmds_OWK5RCT5c05rmPk_Vp9p3ToFd0vOZIxy9UYhENGnZWTY0n32kx1WL5RAwnHogDud2e0n2bpQ4mI3vTqjj9v0qkexVUtqUy4JD7=s0)
-
-I added logic to find win/draw conditions in each grid and in the game as a whole. This code was again very repetitive and probably is another opportunity for major refactoring.
-
-![](https://lh5.googleusercontent.com/PX36pXyBiSIlSD-vfafRtWvCUP9hu7pk68E-JYzvB59rTrqpaVO45ZozcXEVzg-V8_gdhVpVgsCffCa6wsEln3e1MIUe6OxPiZkoRdoz2gABn6r_Z7I9aj28vQT0R23M9FS2CnpX=s0)
-
-This game easily lends itself to play on a smaller screen compared to many of the other grid-game options because it uses pointer events instead of arrow-key play. So, I made the game design responsive and it can be played on phones in addition to larger screen displays.
-
-Known Bugs
-
-When the game is over, due to a win or draw, the game grid has a "game-end" class applied to each grid that should prevent players from placing another token. This stopped working correctly after I resolved the problem of players clicking on a cell that already had a token.
-
-I also was not able to get the local storage to hold more than one winner at a time.
+Once the functionality was in place we styled the app.
 
 Challenges
 
-Implementing local storage was a struggle. I had a difficult time getting the information I wanted to print to the screen and ended up having to settle for only storing the most recent winner. I would like to be able to update local storage to return an array of winners.
+Learning to work with an API for our needs was interesting. It taught me to be flexible regarding my plans for the app.
 
-There was a bug with a player attempting to place a token in a cell that was already occupied. I attempted unsuccessfully to solve this by applying classes to the occupied cells. I would work at it and then set it aside to work on other problems, returning to try and solve it again. Eventually, I asked for help and worked through it with a TA who helped me to find a solution. We settled on the final "} else {" shown below that returned a window alert to the player prompting them to choose an unoccupied cell.
+Additionally, the API seemed to change how cities were listed from time to time. So we might successfully make our request for "Bogata, Colombia" to get the weather and then the next day have to request only "Bogata." 
 
-![](https://lh5.googleusercontent.com/blJXe2gTy_CxV6cYYmhXk3As4oOjGh-iyNIV4Ww33WbFRRqfifzG59m2CpactTyWkmmRvTblrU9WH3qIOzdKOXgN3wrst_u_Pi0279Fg1kBEJdBeeomqdLkhuR7av2n0d7SljOOM=s0)
-
-A more general challenge I faced in this project was simply grappling with the size and organization. I was able to refactor to the point of cutting the lines of code in half, but it's still fairly unwieldy. I expect this will begin to feel more natural.
+We also ran into an infinite loop issue when we tried to useState on our Book Show page. We needed to have the book set in state in order to use its location for the API request. We ended up using a Lazy Initial State to overcome the infinite loop.![](https://lh4.googleusercontent.com/J_Oo9wP_pbs2MaoDDjigERE82c4gMhbsSZ47w4UOYWoDxhuqdARo4BwC-qYkAC-reeIjFT_IX7F3_6DZbZ6pNuUR5852jxKhmLFVeqOZ3RfichdwKRmW89-1LCuYKmi0Wk8qq7pq=s0)
 
 Wins
 
-I am overall very proud of this first project. My time management was successful and I never felt too far behind. I enjoyed mapping out the steps logically and solving the problems that occurred.
+I was pleased to have a complete project to present at the end of our 48-hour timeframe.
+
+Known Bugs
+
+I had to hard-code the emoji weather symbols depending on the innerHTML of the city.description. Because I couldn't find a list of all the possible weather descriptions, I had to build it off the descriptions I could see. So, the list is incomplete. The page compiles as expected, it simply doesn't include the emoji.
+
+![](https://lh6.googleusercontent.com/2o7hN5QYDTtEZi3s-2T3Nt0R0zs3u3kFutJUfZWYVvdrmEjoL_D4QlbOHvq2nWdaKFf2gQ8gVyZPjhMY3JdeeIuql_4vPIFMqaUemQnZIiHs1OpCWnXinMM28r-MevKPBkMiOh_y=s0)
 
 Future Improvements
 
--   Correct the "game-end" bug described above.
+-   This app could be more valuable with a larger library. 
 
--   Update Recent Winners local storage to reflect an array instead of only one object.
+-   I would add weather 7-day forecasts to the pages. 
 
--   Add a computer player.
-
--   Add the ability to choose your own token.
-
--   Allow users to turn off sound effects.
-
--   Refactor repetitive code.
+-   I would like to use more destination based APIs to the app to provide information like signature food items and languages spoken.
 
 Key Learnings
 
-Making this game for my first project was a fun and tangible way to demonstrate how much I learned in my first few weeks of class. I finished this project with a practical understanding of DOM manipulation and the JavaScript call stack.
+This project was a useful first step in learning about APIs and using React. It was also a good lesson in working with another person toward a common objective. I was able to lean into my strengths and lean on my partner's strengths to achieve our goals.
